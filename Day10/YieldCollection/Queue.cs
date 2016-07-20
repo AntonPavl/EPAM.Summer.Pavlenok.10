@@ -119,6 +119,7 @@ namespace YieldCollection
             private readonly int tail;
             private int elemcount;
             private int currentIndex;
+            static Object dummyObject = new Object();
 
             public Iterator(T[] collection,int head,int tail,int elemcount)
             {

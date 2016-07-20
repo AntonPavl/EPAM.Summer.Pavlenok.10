@@ -67,5 +67,6 @@ namespace YieldcollectionNTest
                 Assert.AreEqual(item, temp[++index]);
             }
         }
+
     }
 }
