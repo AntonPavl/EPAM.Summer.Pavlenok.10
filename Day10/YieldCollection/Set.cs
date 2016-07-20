@@ -20,7 +20,7 @@ namespace YieldCollection
             elements = new List<T>();
             foreach (var item in other)
             {
-                elements.Add(item);
+                Add(item);
             }
         }
         public int Count
