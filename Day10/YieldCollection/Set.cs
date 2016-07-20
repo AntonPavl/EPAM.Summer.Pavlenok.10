@@ -9,20 +9,27 @@ namespace YieldCollection
 {
     public class Set<T>: IEnumerable<T> where T : class
     {
-
-        private List<T> elements;
+        private List<T> elements;  //Do Array!!!
+        /// <summary>
+        /// create the Set
+        /// </summary>
+        private T[] elements2;
         public Set()
         {
             elements = new List<T>();
         }
+        /// <summary>
+        /// create the Set from another collection
+        /// </summary>
+        /// <param name="other"></param>
         public Set(IEnumerable<T> other)
         {
             elements = new List<T>();
-            foreach (var item in other)
-            {
-                Add(item);
-            }
+            elements = other.Distinct().ToList();
         }
+        /// <summary>
+        /// Get amount of elements
+        /// </summary>
         public int Count
         {
             get
@@ -31,6 +38,11 @@ namespace YieldCollection
             }
         }
 
+        /// <summary>
+        /// Add item in Set
+        /// </summary>
+        /// <param name="item">item</param>
+        /// <returns></returns>
         public bool Add(T item)
         {
             bool ret = elements.Contains(item);
@@ -39,16 +51,28 @@ namespace YieldCollection
             return ret;
         }
 
+        /// <summary>
+        /// clear all elements in set
+        /// </summary>
         public void Clear()
         {
             elements.Clear();
         }
+        /// <summary>
+        /// check item occurrence in the set
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
 
         public bool Contains(T item)
         {
             return elements.Contains(item);
         }
-
+        /// <summary>
+        /// copies the entire set to an array, startinr at the specified index of target array
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="arrayIndex"></param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             elements.CopyTo(array, arrayIndex);
@@ -63,7 +87,11 @@ namespace YieldCollection
         {
             elements = elements.Intersect(other).ToList();
         }
-
+        /// <summary>
+        /// Remove item from set
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Remove(T item)
         {
             return elements.Remove(item);
@@ -71,8 +99,7 @@ namespace YieldCollection
 
         public void SymmetricExceptWith(IEnumerable<T> other)
         {
-            var temp = elements;
-            elements = elements.Except(other).Union(other.Except(temp)).ToList();
+            elements = elements.Except(other).Union(other.Except(elements)).ToList();
         }
 
         public void UnionWith(IEnumerable<T> other)
