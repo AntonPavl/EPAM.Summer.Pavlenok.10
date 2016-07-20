@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fibonachi", "Fibonachi", "{FF74DD17-4645-4365-9657-96315E5D638B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{B23DCA28-3C7F-41EA-BD90-3BF1EA8F3ED5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinaryTree", "BinaryTree", "{08787C22-7597-4CC2-B838-FBD211A27C9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Matrix", "Matrix", "{CCC71B96-F41A-4D42-BE17-DE8E1708A567}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibonachiDLL", "FibonachiDLL\FibonachiDLL.csproj", "{102DF22A-846E-4087-A432-411475FC807F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BC5B822A-6431-4273-BB9E-5B9D88E27CF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{102DF22A-846E-4087-A432-411475FC807F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102DF22A-846E-4087-A432-411475FC807F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102DF22A-846E-4087-A432-411475FC807F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102DF22A-846E-4087-A432-411475FC807F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{102DF22A-846E-4087-A432-411475FC807F} = {FF74DD17-4645-4365-9657-96315E5D638B}
+	EndGlobalSection
+EndGlobal
