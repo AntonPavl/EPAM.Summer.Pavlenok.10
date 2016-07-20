@@ -112,7 +112,7 @@ namespace YieldCollection
         IEnumerator<T> IEnumerable<T>.GetEnumerator() =>
             this.GetEnumerator();
 
-        public class Iterator  : IEnumerator<T>
+        public struct Iterator  : IEnumerator<T>
         {
             private readonly T[] collection;
             private readonly int head;
