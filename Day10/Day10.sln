@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibonachiDLL", "FibonachiDL
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BC5B822A-6431-4273-BB9E-5B9D88E27CF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibonachiNTest", "FibonachiNTest\FibonachiNTest.csproj", "{067456C0-086C-46A8-B37F-1405717B7BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YieldCollection", "YieldCollection\YieldCollection.csproj", "{B8CC8466-E37B-454B-A0BD-2845C9777091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YieldcollectionNTest", "YieldcollectionNTest\YieldcollectionNTest.csproj", "{65A3A6E9-D35E-429A-B309-6AFF0B5A97AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,11 +31,26 @@ Global
 		{102DF22A-846E-4087-A432-411475FC807F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{102DF22A-846E-4087-A432-411475FC807F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{102DF22A-846E-4087-A432-411475FC807F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8CC8466-E37B-454B-A0BD-2845C9777091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CC8466-E37B-454B-A0BD-2845C9777091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CC8466-E37B-454B-A0BD-2845C9777091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CC8466-E37B-454B-A0BD-2845C9777091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A3A6E9-D35E-429A-B309-6AFF0B5A97AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A3A6E9-D35E-429A-B309-6AFF0B5A97AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A3A6E9-D35E-429A-B309-6AFF0B5A97AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A3A6E9-D35E-429A-B309-6AFF0B5A97AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{102DF22A-846E-4087-A432-411475FC807F} = {FF74DD17-4645-4365-9657-96315E5D638B}
+		{067456C0-086C-46A8-B37F-1405717B7BFC} = {BC5B822A-6431-4273-BB9E-5B9D88E27CF8}
+		{B8CC8466-E37B-454B-A0BD-2845C9777091} = {B23DCA28-3C7F-41EA-BD90-3BF1EA8F3ED5}
+		{65A3A6E9-D35E-429A-B309-6AFF0B5A97AA} = {BC5B822A-6431-4273-BB9E-5B9D88E27CF8}
 	EndGlobalSection
 EndGlobal
