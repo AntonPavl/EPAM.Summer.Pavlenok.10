@@ -111,7 +111,6 @@ namespace YieldcollectionNTest
             HashSet.Add("1");
             HashSet.Add("2");
             var HashSet2 = HashSet;
-
             Assert.IsTrue(HashSet.Equals(HashSet2));
         }
 

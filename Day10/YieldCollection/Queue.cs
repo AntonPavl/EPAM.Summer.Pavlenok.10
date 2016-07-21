@@ -26,12 +26,15 @@ namespace YieldCollection
         /// </summary>
         /// <param name="collection"></param>
         public Queue(IEnumerable<T> collection)
-        {
+        {         
             stringsArray = new T[memorySize];
-            foreach (var item in collection)
-            {
-                Enqueue(item);
-            }
+            if (collection != null)
+            { 
+                foreach (var item in collection)
+                {
+                    Enqueue(item);
+                }
+           }
         }
         private void AllocateMemory()
         {

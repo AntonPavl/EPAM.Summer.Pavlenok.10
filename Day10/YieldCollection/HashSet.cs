@@ -22,9 +22,12 @@ namespace YieldCollection
         public HashSet(IEnumerable<T> other)
         {
             elements = new Hashtable();
-            foreach (var item in other.Distinct())
+            if (!ReferenceEquals(other, null))
             {
-                elements.Add(item.GetHashCode(), item);
+                foreach (var item in other.Distinct())
+                {
+                    elements.Add(item.GetHashCode(), item);
+                }
             }
         }
         /// <summary>
@@ -45,6 +48,7 @@ namespace YieldCollection
         /// <returns></returns>
         public bool Add(T item)
         {
+            if (ReferenceEquals(item, null)) throw new ArgumentNullException();
             bool ret = elements.Contains(item.GetHashCode());
             if (!ret) elements.Add(item.GetHashCode(), item);
             return ret;
@@ -74,11 +78,13 @@ namespace YieldCollection
         /// <param name="arrayIndex"></param>
         public void CopyTo(T[] array, int arrayIndex)
         {
+            if (ReferenceEquals(array, null)) throw new ArgumentNullException();
             elements.CopyTo(array, arrayIndex);
         }
 
         public void ExceptWith(HashSet<T> other)
         {
+            if (ReferenceEquals(other, null)) throw new ArgumentNullException();
             foreach (DictionaryEntry item in other.elements)
             {
                 if (elements.ContainsKey(item.Key))
@@ -91,6 +97,7 @@ namespace YieldCollection
         }
         public void IntersectWith(HashSet<T> other)
         {
+            if (ReferenceEquals(other, null)) throw new ArgumentNullException();
             Hashtable part1 = GetHashTable();
             foreach (DictionaryEntry item in elements)
             {
@@ -100,6 +107,7 @@ namespace YieldCollection
         }
         public void SymmetricExceptWith(HashSet<T> other)
         {
+            if (ReferenceEquals(other, null)) throw new ArgumentNullException();
             Hashtable part1 = GetHashTable();
             Hashtable part2 = other.GetHashTable();
             foreach (DictionaryEntry item in elements)
@@ -119,6 +127,7 @@ namespace YieldCollection
 
         public void UnionWith(HashSet<T> other)
         {
+            if (ReferenceEquals(other, null)) throw new ArgumentNullException();
             foreach (DictionaryEntry item in other.elements)
             {
                 if (!elements.ContainsKey(item.Key))
@@ -134,7 +143,8 @@ namespace YieldCollection
         /// <returns></returns>
         public void Remove(T item)
         {
-             elements.Remove(item.GetHashCode());
+            if (ReferenceEquals(item, null)) throw new ArgumentNullException();
+            elements.Remove(item.GetHashCode());
         }
 
         public IEnumerator<T> GetEnumerator()
