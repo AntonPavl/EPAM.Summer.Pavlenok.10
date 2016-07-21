@@ -13,7 +13,6 @@ namespace YieldCollection
         /// <summary>
         /// create the Set
         /// </summary>
-        private T[] elements2;
         public Set()
         {
             elements = new List<T>();

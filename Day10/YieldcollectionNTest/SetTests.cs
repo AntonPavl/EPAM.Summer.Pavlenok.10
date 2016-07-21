@@ -3,6 +3,8 @@ using NUnit.Framework;
 using YieldCollection;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections;
+using System.Timers;
 
 namespace YieldcollectionNTest
 {
@@ -23,7 +25,6 @@ namespace YieldcollectionNTest
             Assert.IsTrue(Enumerable.SequenceEqual(set,set3));
         }
 
-
         [Test]
         public void SetTest_Union()
         {
@@ -36,6 +37,8 @@ namespace YieldcollectionNTest
             set.UnionWith(set2);
             Assert.IsTrue(Enumerable.SequenceEqual(set, set3));
         }
+
+
         [Test]
         public void SetTest_Intersect()
         {
@@ -48,6 +51,7 @@ namespace YieldcollectionNTest
             set.IntersectWith(set2);
             Assert.IsTrue(Enumerable.SequenceEqual(set, set3));
         }
+
         [Test]
         public void SetTest_SymmetricExcept()
         {
@@ -60,14 +64,18 @@ namespace YieldcollectionNTest
             set.SymmetricExceptWith(set2);
             Assert.IsTrue(Enumerable.SequenceEqual(set, set3));
         }
+
+
         [Test]
         public void SetTest_Add()
         {
             var set = new Set<object>();
             set.Add(1);
             set.Add("2");
-            object[] temp = { 1, "2" };
-            Assert.IsTrue(Enumerable.SequenceEqual(set, new Set<object>(temp)));
+            var temp = new Set<object>();
+            temp.Add(1);
+            temp.Add("2");
+            Assert.IsTrue(Enumerable.SequenceEqual(set, temp));
         }
         [Test]
         public void SetTest_clear()
@@ -86,8 +94,9 @@ namespace YieldcollectionNTest
             set.Add(1);
             set.Add("2");
             set.Remove(1);
-            object[] temp2 = { "2" };
-            Assert.IsTrue(Enumerable.SequenceEqual(set, new Set<object>(temp2)));
+            var temp2 = new Set<object>();
+            temp2.Add("2");
+            Assert.IsTrue(Enumerable.SequenceEqual(set, temp2));
         }
         [Test]
         public void SetTest_contains()
@@ -97,6 +106,51 @@ namespace YieldcollectionNTest
             set.Add("2");
             Assert.IsTrue(set.Contains(1));
         }
+
+
+        //[Test]
+        //public void SPEED_LIST_TEST()
+        //{
+        //    List<object> l = new List<object>();
+        //    for (int i = 0; i < 100000; i++)
+        //    {
+        //        l.Add(i);
+        //    }
+        //    Random r = new Random();
+
+        //    var watch = System.Diagnostics.Stopwatch.StartNew();
+        //    for (int i = 0; i < 100000; i++)
+        //    {
+        //        l.Contains(r.Next(0, 100000));
+        //    }
+        //    watch.Stop();
+        //    var workedtime = watch.ElapsedTicks;
+        //    Debug.WriteLine("List {0}", workedtime);
+        //}
+
+
+        //[Test]
+        //public void SPEED_HASHTABLE_TEST()
+        //{
+        //    Hashtable l = new Hashtable();
+        //    for (int i = 0; i < 100000; i++)
+        //    {
+        //        l.Add(i.GetHashCode(),i);
+        //    }
+        //    Random r = new Random();
+
+        //    var watch = System.Diagnostics.Stopwatch.StartNew();
+        //    for (int i = 0; i < 100000; i++)
+        //    {
+        //        //l.Contains(r.Next(0, 1000));
+        //       // l.ContainsValue(r.Next(0, 100000));
+        //        l.Contains(r.Next(0, 100000).GetHashCode());
+        //    }
+        //    watch.Stop();
+        //    var workedtime = watch.ElapsedTicks;
+        //    Debug.WriteLine("HashTable {0}", workedtime);
+        //}
+
 
     }
 }

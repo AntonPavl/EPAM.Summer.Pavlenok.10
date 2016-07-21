@@ -10,6 +10,11 @@ namespace FibonachiDLL
     {
         private static int _a;
         private static int _b;
+        /// <summary>
+        /// Evaluate fibonachi sums
+        /// </summary>
+        /// <param name="number">range of 0 to number</param>
+        /// <returns></returns>
         public static int Evaluate(int number)
         {
             _a = 1;
@@ -22,6 +27,11 @@ namespace FibonachiDLL
             }
             return ret;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="number">Number position</param>
+        /// <returns></returns>
         public static int GetFibonachiNumber(int number)
         {
             _a = 1;
