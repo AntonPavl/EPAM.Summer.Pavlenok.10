@@ -8,10 +8,9 @@ namespace Matrixs
 {
     interface IMatrix<T>
     {
-        event EventHandler Events;
-        void SetElement(T value,int a, int b);
+        void SetElement(T value, int a, int b);
         T GetElement(int a, int b);
-        Matrix<T> Transposition();
+        void Transposition();
 
     }
 }

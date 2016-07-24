@@ -11,13 +11,13 @@ namespace Matrixs
     {
         public event EventHandler Events = delegate { };
         private T[][] elements;
-        private int size;
         private int? trigerA = null;
         private int? trigerB = null;
-
+        public int Size { get;private set; }
         public Matrix(int size)
         {
-            this.size = size;
+            if (size<1) throw new ArgumentException();
+            this.Size = size;
             elements = new T[size][];
             for (int i = 0; i < elements.Length; i++)
             {
@@ -33,6 +33,7 @@ namespace Matrixs
         /// <returns></returns>
         public T GetElement(int a, int b)
         {
+            if (a > elements.Length || b > elements.Length) throw new ArgumentException();
             return elements[a][b];
         }
         /// <summary>
@@ -43,6 +44,7 @@ namespace Matrixs
         /// <param name="b">column index</param>
         public void SetElement(T value, int a, int b)
         {
+            if (a > elements.Length || b > elements.Length) throw new ArgumentException();
             elements[a][b] = value;
             if (a == trigerA && b == trigerB) Sender();
         }
@@ -98,28 +100,14 @@ namespace Matrixs
         /// Matrix transposition
         /// </summary>
         /// <returns></returns>
-        public Matrix<T> Transposition()
+        public void Transposition()
         {
-            var ret = new Matrix<T>(size);
-            int i = 0;
-            foreach (var item in GetOneDimEnumerator())
-            {
-                ret.SetArray(i++, item);
-            }
-            return ret;
+
         }
 
         private void SetArray(int index,T[] array)
         {
             elements[index] = array;
-        }
-
-        private IEnumerable<T[]> GetOneDimEnumerator()
-        {
-            foreach (var oneDim in elements)
-            {
-                yield return oneDim;
-            }
         }
 
     }
