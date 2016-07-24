@@ -9,7 +9,7 @@ namespace Matrixs
 {
     public class Matrix<T> : IMatrix<T>,IEquatable<Matrix<T>>,IEnumerable<T>
     {
-        public event EventHandler Events = delegate { };
+        public event EventHandler<MatrixData> Events = delegate { };
         private T[][] elements;
         private int? trigerA = null;
         private int? trigerB = null;
@@ -48,13 +48,12 @@ namespace Matrixs
             elements[a][b] = value;
             if (a == trigerA && b == trigerB) Sender();
         }
-
         protected virtual void Sender()
         {
-            EventHandler temp = Events;
+            EventHandler<MatrixData> temp = Events;
             if (temp != null)
             {
-                temp(this, null);
+                temp(this, new MatrixData((int)trigerA,(int)trigerB));
             }
         }
         /// <summary>
@@ -110,5 +109,9 @@ namespace Matrixs
             elements[index] = array;
         }
 
+        public void Accept(IOperationVisitor<T> visitor, IMatrix<T> matr)
+        {
+            visitor.Visit(this,(dynamic)matr);
+        }
     }
 }

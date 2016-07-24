@@ -10,7 +10,7 @@ namespace Matrixs
     public class SimmetrMatrix<T> : IMatrix<T>, IEquatable<SimmetrMatrix<T>>, IEnumerable<T>
     {
 
-        public event EventHandler Events = delegate { };
+        public event EventHandler<MatrixData> Events = delegate { };
         private T[][] elements;
         private int? trigerA = null;
         private int? trigerB = null;
@@ -54,10 +54,10 @@ namespace Matrixs
 
         protected virtual void Sender()
         {
-            EventHandler temp = Events;
+            EventHandler<MatrixData> temp = Events;
             if (temp != null)
             {
-                temp(this, null);
+                temp(this, new MatrixData((int)trigerA, (int)trigerB));
             }
         }
         /// <summary>
@@ -106,6 +106,10 @@ namespace Matrixs
         public void Transposition()
         {
 
+        }
+        public void Accept(IOperationVisitor<T> visitor, IMatrix<T> matr)
+        {
+            visitor.Visit(this, (dynamic)matr);
         }
     }
 }
