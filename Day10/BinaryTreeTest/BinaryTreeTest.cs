@@ -104,7 +104,9 @@ namespace BinaryTreeTest
         {
             public int Compare(string x, string y)
             {
-                return y.CompareTo(x);
+                if (y == null) return 1;
+                if (x == null) return -1;
+                return x.CompareTo(y);
             }
         }
 
@@ -121,6 +123,12 @@ namespace BinaryTreeTest
                 list.Add(value);
             }
             list.Sort(new LeftcomparatorString());
+            int index = 0;
+            foreach (var item in bt.Inorder())
+            {
+                Debug.Write($"list = {item}, tree = {list[index]}");
+                index++;
+            }
             CollectionAssert.AreEqual(bt.Inorder(), list);
         }
 
@@ -180,5 +188,21 @@ namespace BinaryTreeTest
                 Debug.WriteLine(item);
             }
         }
+
+        //[Test]
+        //public void Test()
+        //{
+        //    BinaryTree<int> tree = new BinaryTree<int>();
+        //    for (int i = 0; i < 20000; i++)
+        //    {
+        //        tree.Add(i);
+        //    }
+        //    var watch = System.Diagnostics.Stopwatch.StartNew();
+        //    foreach (var item in tree.Preorder())
+        //    {
+        //    }
+        //    watch.Stop();
+        //    Debug.WriteLine(watch.ElapsedTicks);
+        //}
     }
 }

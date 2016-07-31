@@ -1,6 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
 using Matrixs;
+using System.Diagnostics;
+
 namespace MatrixNTests
 {
     [TestFixture]
@@ -9,10 +11,8 @@ namespace MatrixNTests
         [Test]
         public void TestMethod1()
         {
-            DiagonalMatrix<int> dm = new DiagonalMatrix<int>(4);
-            dm.SetElement(10, 2, 2);
-            Matrix<int> m = new Matrix<int>(4);
-            m.SetElement(10, 2, 2);
+            SquareMatrix<int> SM1 = new SquareMatrix<int>(2);
+            SquareMatrix<int> SM2 = new SquareMatrix<int>(2);
         }
     }
 }

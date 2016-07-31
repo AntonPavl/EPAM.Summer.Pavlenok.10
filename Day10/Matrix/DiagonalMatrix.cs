@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,100 +6,34 @@ using System.Threading.Tasks;
 
 namespace Matrixs
 {
-    public class DiagonalMatrix<T> : IMatrix<T>, IEquatable<DiagonalMatrix<T>>, IEnumerable<T>
+    public class DiagonalMatrix<T> : AbstractMatrix<T>
     {
-        public event EventHandler<MatrixData> Events = delegate { };
-        private T[][] elements;
-        private int? trigerA = null;
-        private int? trigerB = null;
-        public int Size { get;private set; }
-        public DiagonalMatrix(int size)
+        public DiagonalMatrix(int size = 2)
         {
-            if (size < 1) throw new ArgumentException();
-            this.Size = size;
-            elements = new T[size][];
-            for (int i = 0; i < elements.Length; i++)
+            array = new T[size];
+        }
+        public DiagonalMatrix(IEnumerable<T> collection)
+        {
+            double temp = Math.Sqrt(collection.Count());
+            temp = temp - Math.Truncate(temp);
+            if (temp > 0) throw new ArgumentException();
+            Size = (int)temp * (int)temp;
+            array = new T[Size];
+            int index = 0;
+            foreach (var item in collection)
             {
-                elements[i] = new T[size];
+                array[index++] = item;
             }
         }
-
-        /// <summary>
-        /// Get value from a,b index
-        /// </summary>
-        /// <param name="a">string index</param>
-        /// <returns></returns>
-        public T GetElement(int a,int b)
+        protected override T GetValue(int i, int j)
         {
-            if (a > elements.Length || b> elements.Length) throw new ArgumentException();
-            if (a != b) throw new ArgumentException();
-            return elements[a][b];
-        }
-        /// <summary>
-        /// Set value to a,b index
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="a">a index</param>
-        public void SetElement(T value, int a,int b)
-        {
-            if (a > elements.Length || b>elements.Length) throw new ArgumentException();
-            if (a!=b) throw new ArgumentException();
-            elements[a][b] = value;
-            if (a == trigerA && b == trigerB) Sender();
+            return i == j ? array[i] : default(T);
         }
 
-        protected virtual void Sender()
+        protected override void SetValue(int i, int j, T value)
         {
-            EventHandler<MatrixData> temp = Events;
-            if (temp != null)
-            {
-                temp(this, new MatrixData((int)trigerA, (int)trigerB));
-            }
-        }
-        /// <summary>
-        /// Do event when element has been changed
-        /// </summary>
-        /// <param name="a">oneDimesion index</param>
-        public void SetElementChangedTrigger(int a,int b)
-        {
-            trigerA = a;
-            trigerB = b;
-        }
-        /// <summary>
-        /// Remove eventchange trigger
-        /// </summary>
-        public void RemoveElementChangedTrigger()
-        {
-            trigerA = null;
-            trigerB = null;
-        }
-
-        public bool Equals(DiagonalMatrix<T> other)
-        {
-            return ReferenceEquals(this, other);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            for (int i = 0; i < elements.Length; i++)
-            {
-                yield return elements[i][i];
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        public void Transposition()
-        {
-
-        }
-
-        public void Accept(IOperationVisitor<T> visitor, IMatrix<T> matr)
-        {
-            visitor.Visit(this, (dynamic)matr);
+            if (i != j) throw new ArgumentException();
+            array[i] = value;
         }
     }
 }

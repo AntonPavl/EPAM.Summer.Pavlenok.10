@@ -19,24 +19,46 @@ namespace Tree
                 Value = value;
             }
         }
-
-        public T RootLeftForTest()
-        {
-            return root.Left.Value;
-        }
-        public T RootRightForTest()
-        {
-            return root.Left.Value;
-        }
-
         private Node<T> root;
         private IComparer<T> comparer;
+        public IComparer<T> Comparer
+        {
+            private get { return comparer; }
+            set {
+                comparer = value;
+                try
+                {
+                    comparer.Compare(default(T), default(T));
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (ArgumentException ex)
+                {
+                    throw ex;
+                }
+                ReTree();
+            }
+        }
         public BinaryTree() : this(Comparer<T>.Default){}
         public BinaryTree(IEnumerable<T> collection) : this(collection, Comparer<T>.Default){}
         public BinaryTree(IComparer<T> comparer)
         {
-            if (ReferenceEquals(comparer,null)) this.comparer = Comparer<T>.Default;
+            if (ReferenceEquals(comparer,   null)) this.comparer = Comparer<T>.Default;
             this.comparer = comparer;
+            try
+            {
+                comparer.Compare(default(T), default(T));
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;
+            }          
         }
         public BinaryTree(IEnumerable<T> collection, IComparer<T> comparer) : this(comparer)
         {
@@ -237,6 +259,7 @@ namespace Tree
             }
             return false;
         }
+        #region enumerable
         private Queue<Node<T>> queue;
         private void PreOrderTravers(Node<T> traver)
         {
@@ -249,9 +272,8 @@ namespace Tree
         }
         private void InOrderTravers(Node<T> traver)
         {
-            var ret = new Stack<Node<T>>();
             if (traver != null)
-            {         
+            {
                 InOrderTravers(traver.Left);
                 queue.Enqueue(traver);
                 InOrderTravers(traver.Right);
@@ -264,34 +286,33 @@ namespace Tree
                 PostOrderTravers(traver.Left);
                 PostOrderTravers(traver.Right);
                 queue.Enqueue(traver);
-            }
-        }
-        private IEnumerable<T> Order(Action<Node<T>> getQueue)
-        {
-            queue = new Queue<Node<T>>();
-            getQueue(root);
-            while( queue.Count > 0)
-            {
-                yield return queue.Dequeue().Value;
-            }
-        }
+            }  
         public IEnumerable<T> Inorder() => Order(InOrderTravers);
         public IEnumerable<T> Preorder() => Order(PreOrderTravers);
         public IEnumerable<T> Postorder() => Order(PostOrderTravers);
-
-
-        public IEnumerator<T> GetEnumerator()
+        private IEnumerable<T> Order(Action<Node<T>> fun)
         {
-            return Preorder().GetEnumerator();
+            queue = new Queue<Node<T>>();
+            fun(root);
+            while (queue.Count > 0)
+            { 
+                 yield return queue.Dequeue().Value;
+            }
         }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        public IEnumerator<T> GetEnumerator() => Inorder().GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() =>  GetEnumerator();
+        #endregion enumerable
 
-        public bool Equals(BinaryTree<T> other)
+        public bool Equals(BinaryTree<T> other) => this.Equals(other);
+        private void ReTree()
         {
-            return this.Equals(other);
+            List<T> elements = new List<T>();
+            foreach (var item in Preorder())
+            {
+                elements.Add(item);
+            }
+            root = null;
+            AddRange(elements);
         }
     }
 }
