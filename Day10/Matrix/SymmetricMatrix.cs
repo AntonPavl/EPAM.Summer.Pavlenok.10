@@ -8,15 +8,25 @@ namespace Matrixs
 {
     public class SymmetricMatrix<T>: SquareMatrix<T>
     {
+        private int demiSize;
         public SymmetricMatrix(int size = 2)
         {
-            array = new T[size*size];
             Size = size;
+            for (int i = 1; i <= size; i++)
+            {
+                demiSize += i;
+            }
+            array = new T[demiSize];
         }
         protected override void SetValue(int i, int j, T value)
         {
-            array[i * Size + j] = value;
-            array[j * Size + i] = value;
+            //hmm
+        }
+
+        protected override T GetValue(int i, int j)
+        {
+            //hmm
+            return array[0];
         }
     }
 }

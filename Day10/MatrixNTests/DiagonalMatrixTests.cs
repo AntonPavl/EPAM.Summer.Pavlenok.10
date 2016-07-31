@@ -11,8 +11,8 @@ namespace MatrixNTests
         [Test]
         public void TestMethod1()
         {
-            SquareMatrix<int> SM1 = new SquareMatrix<int>(2);
-            SquareMatrix<int> SM2 = new SquareMatrix<int>(2);
+            SymmetricMatrix<int> SM1 = new SymmetricMatrix<int>(3);
+            Debug.WriteLine(SM1.Size);
         }
     }
 }
